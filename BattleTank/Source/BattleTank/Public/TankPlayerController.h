@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright LTD 2023
 
 #pragma once
 
@@ -14,9 +14,12 @@ UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-private:
+
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
 
+private:
 	void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
