@@ -1,4 +1,4 @@
-// Copyright LTD 2023
+// Copyright LTD 2023.
 
 #include "Tank.h"
 #include "TankPlayerController.h"
