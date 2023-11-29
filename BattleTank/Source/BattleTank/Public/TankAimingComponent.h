@@ -1,14 +1,24 @@
-// Copyright LTD 2023
+// Get world location of linetrace through crosshair true if hits the landscape
 
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/Class.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
+
+// Enum for aiming state
+UENUM()
+enum class EFiringState : uint8
+{
+	Reloading,
+	Aiming,
+	Locked
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
@@ -24,9 +34,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void Fire();
 
+protected:
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	EFiringState FiringState = EFiringState::Reloading;
+
 private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
+
+	virtual void BeginPlay() override;
+
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void MoveBarrelTowards(FVector AimDirection);
 
@@ -43,4 +61,5 @@ private:
 	float ReloadTimeInSeconds = 3;
 
 	double LastFireTime = 0;
+
 };
