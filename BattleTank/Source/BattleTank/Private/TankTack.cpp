@@ -8,6 +8,16 @@ UTankTack::UTankTack()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
+void UTankTack::BeginPlay()
+{
+	OnComponentHit.AddDynamic(this, &UTankTack::OnHit);
+}
+
+void UTankTack::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("I'm hit, I'm hit!"))
+}
+
 void UTankTack::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	auto SlippageSpeed = FVector::DotProduct(GetRightVector(), GetComponentVelocity());
