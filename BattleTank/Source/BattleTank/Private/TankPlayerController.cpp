@@ -1,4 +1,4 @@
-// Get world location of linetrace through crosshair true if hits the landscape
+// Copyright LTD 2023
 
 #include "TankAimingComponent.h"
 #include "TankPlayerController.h"
@@ -6,6 +6,11 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
+	if (ensure(AimingComponent)) 
+	{
+		FoundAimingComponent(AimingComponent);
+	}
 }
 
 void ATankPlayerController::Tick(float DeltaTime)

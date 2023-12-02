@@ -1,4 +1,4 @@
-// Get world location of linetrace through crosshair true if hits the landscape
+// Copyright LTD 2023
 
 #include "TankAimingComponent.h"
 #include "TankAIController.h"
