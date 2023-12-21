@@ -21,10 +21,14 @@ public:
 		class AController* EventInstigator,
 		AActor* DamageCauser
 	) override;
+
+	UFUNCTION(BlueprintPure, Category = "Health")
+	float GetHealthPercent() const;
+
+private:
 	// Sets default values for this pawn's properties
 	ATank();
 
-private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	int32 StartingHealth = 100;
 
