@@ -18,7 +18,11 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = Setup)
 	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
 
+	UFUNCTION()
+	void OnPossedTankDeath();
+
 private:
+	void SetPawn(APawn* InPawn);
 	void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
